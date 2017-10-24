@@ -11,15 +11,24 @@ function updateIcon(tabId, enabled) {
 	});
 }
 
-function isEnabledUrl(url) {
+function getOrigin(url) {
+	if (url.startsWith('view-source:')) {
+		url = url.substr(12);
+	}
+
 	const u = new URL(url);
-	const enabled = Boolean(ENABLED[u.origin]);
+	return u.origin;
+}
+
+function isEnabledUrl(url) {
+	const origin = getOrigin(url);
+	const enabled = Boolean(ENABLED[origin]);
 	return enabled;
 }
 
 function toggleEnabledUrl(url) {
-	const u = new URL(url);
-	ENABLED[u.origin] = !ENABLED[u.origin];
+	const origin = getOrigin(url);
+	ENABLED[origin] = !ENABLED[origin];
 }
 
 // onRequest
