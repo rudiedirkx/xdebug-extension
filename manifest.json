@@ -1,11 +1,12 @@
 {
 	"name": "Xdebug helper 2",
 	"description": "Xdebug helper 2",
+	"homepage_url": "https://github.com/rudiedirkx/xdebug-helper-for-chrome2",
 	"version": "1.0",
 
 	"manifest_version": 2,
 	"minimum_chrome_version": "20",
-	"permissions": [ "webRequest", "webRequestBlocking", "tabs", "*://*/*" ],
+	"permissions": [ "storage", "webRequest", "webRequestBlocking", "tabs", "*://*/*" ],
 	"icons": {
 		"16": "images/icon--16.png",
 		"48": "images/icon--48.png",
@@ -19,7 +20,11 @@
 		"default_title": "Toggle Xdebug"
 	},
 	"background": {
-		"scripts": [ "xdebug2.background.js" ],
+		"scripts": [ "xdebug2.logic.js", "xdebug2.background.js" ],
 		"persistent": true
+	},
+	"options_ui": {
+		"page": "options/options.html",
+		"open_in_tab": false
 	}
 }

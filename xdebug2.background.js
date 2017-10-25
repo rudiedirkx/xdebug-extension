@@ -1,7 +1,7 @@
 const IMAGES = ['images/bug-gray.png', 'images/bug.png'];
 const ENABLED = {};
-const COOKIE_NAME = 'XDEBUG_SESSION';
-const COOKIE_VALUE = 'PHPSTORM';
+const COOKIE_NAME = xdebug2.COOKIE_NAME;
+var COOKIE_VALUE = xdebug2.DEFAULT_COOKIE_VALUE;
 
 function updateIcon(tabId, enabled) {
 	const icon = IMAGES[ Number(enabled) ];
@@ -30,6 +30,13 @@ function toggleEnabledUrl(url) {
 	const origin = getOrigin(url);
 	ENABLED[origin] = !ENABLED[origin];
 }
+
+// Set cookie value from user config
+xdebug2.getConfig().then(config => {
+	if (config.cookie_value) {
+		COOKIE_VALUE = config.cookie_value;
+	}
+});
 
 // onRequest
 const opt1 = {urls: ['<all_urls>']};
