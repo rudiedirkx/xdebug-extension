@@ -40,7 +40,7 @@ xdebug2.getConfig().then(config => {
 
 // onRequest
 const opt1 = {urls: ['<all_urls>']};
-const opt2 = ['blocking', 'requestHeaders'];
+const opt2 = ['blocking', 'requestHeaders', 'extraHeaders'];
 chrome.webRequest.onBeforeSendHeaders.addListener(function(info) {
 	const requestHeaders = info.requestHeaders;
 	if (isEnabledUrl(info.url)) {
